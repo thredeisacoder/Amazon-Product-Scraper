@@ -330,10 +330,6 @@ MIT License - Tự do sử dụng cho mục đích cá nhân và giáo dục.
 
 **Lưu ý**: Vui lòng tuân thủ Amazon Terms of Service và không sử dụng cho mục đích thương mại vi phạm.
 
-## 👨‍💻 Author
-
-Made with ❤️ by Diggy
-
 ## 🙏 Acknowledgments
 
 - Amazon for the data source
