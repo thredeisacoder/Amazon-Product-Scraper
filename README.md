@@ -44,7 +44,7 @@
 ### 1. Clone hoặc tải project
 
 ```bash
-cd "AMZ Bot Diggy"
+cd "Amazon-Product-Scraper"
 ```
 
 ### 2. Cài đặt dependencies
