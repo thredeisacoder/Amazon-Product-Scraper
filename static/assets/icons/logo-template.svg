@@ -1,0 +1,29 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Background -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="url(#gradient)"/>
+  
+  <!-- Shopping Cart Icon -->
+  <g transform="translate(100, 120)">
+    <!-- Cart Body -->
+    <path d="M50 50 L70 180 L280 180 L300 50 Z" fill="white" stroke="white" stroke-width="8"/>
+    
+    <!-- Cart Handle -->
+    <circle cx="100" cy="220" r="20" fill="white"/>
+    <circle cx="250" cy="220" r="20" fill="white"/>
+    
+    <!-- Amazon Smile -->
+    <path d="M80 100 Q 175 140 270 100" stroke="#FF9900" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <circle cx="280" cy="95" r="6" fill="#FF9900"/>
+  </g>
+  
+  <!-- Text AMZ -->
+  <text x="256" y="380" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white" text-anchor="middle">AMZ</text>
+</svg>

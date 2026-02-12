@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Product Scraper - AMZ Bot Diggy</title>
+    
+    <!-- Favicon - Multiple sizes for better compatibility -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='assets/icons/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='assets/icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='assets/icons/favicon-48x48.png') }}">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ url_for('static', filename='assets/icons/favicon-64x64.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='assets/icons/apple-touch-icon.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/icons/favicon-32x32.png') }}">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Amazon Product Scraper - Công cụ scrape sản phẩm Amazon với lọc giá, hỗ trợ đa tiền tệ">
+    <meta name="author" content="Diggy">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛒 Amazon Product Scraper</h1>
+            <p>Scrape sản phẩm Amazon theo giá và số lượng mong muốn</p>
+        </header>
+
+        <div class="form-container">
+            <form id="scrapeForm">
+                <div class="form-group">
+                    <label for="url">
+                        <span class="label-text">URL Amazon Search</span>
+                        <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="url" 
+                        id="url" 
+                        name="url" 
+                        placeholder="https://www.amazon.com/s?k=kitchen+products"
+                        required
+                    >
+                    <small>Nhập link tìm kiếm Amazon (ví dụ: https://www.amazon.com/s?k=kitchen+products)</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="max_products">
+                            <span class="label-text">Số lượng sản phẩm</span>
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="max_products" 
+                            name="max_products" 
+                            value="10" 
+                            min="1" 
+                            max="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferred_currency">
+                            <span class="label-text">Tiền tệ ưu tiên</span>
+                        </label>
+                        <select id="preferred_currency" name="preferred_currency">
+                            <option value="USD">USD ($) - Đô la Mỹ</option>
+                            <option value="VND">VND (₫) - Việt Nam Đồng</option>
+                            <option value="EUR">EUR (€) - Euro</option>
+                            <option value="GBP">GBP (£) - Bảng Anh</option>
+                        </select>
+                        <small>Chọn tiền tệ để scrape từ Amazon</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="target_price">
+                            <span class="label-text">Giá mục tiêu</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="target_price" 
+                            name="target_price" 
+                            placeholder="Ví dụ: 50"
+                            step="0.01"
+                            min="0"
+                        >
+                        <small>Nhập giá theo tiền tệ đã chọn ở trên</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price_filter">
+                            <span class="label-text">Lọc theo giá</span>
+                        </label>
+                        <select id="price_filter" name="price_filter">
+                            <option value="all">Tất cả sản phẩm</option>
+                            <option value="has_price">Chỉ sản phẩm có giá</option>
+                            <option value="above">Giá cao hơn mức đã điền</option>
+                            <option value="below">Giá thấp hơn mức đã điền</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" id="scrapeBtn" class="btn-primary">
+                        <span class="btn-text">Bắt đầu Scrape</span>
+                        <span class="btn-icon">🚀</span>
+                    </button>
+                    <button type="button" id="stopBtn" class="btn-stop" style="display: none;">
+                        <span class="btn-text">Dừng</span>
+                        <span class="btn-icon">⏹️</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="logContainer" class="log-container" style="display: none;">
+            <div class="log-header">
+                <h3>📋 Processing Log</h3>
+                <button id="clearLog" class="btn-secondary">Xóa Log</button>
+            </div>
+            <div id="logContent" class="log-content"></div>
+        </div>
+
+        <div id="resultsContainer" class="results-container" style="display: none;">
+            <div class="results-header">
+                <h3>✅ Kết quả (<span id="productCount">0</span> sản phẩm)</h3>
+                <button id="exportBtn" class="btn-secondary">Xuất CSV</button>
+            </div>
+            <div id="resultsContent" class="results-content"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
